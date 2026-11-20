@@ -1,0 +1,37 @@
+name: Build
+on:
+  push:
+    branches: [main, feature/item-inspection]
+    paths-ignore: ['**/*.md']
+  pull_request:
+    paths-ignore: ['**/*.md']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          path: IntegratedLore
+      - uses: actions/checkout@v4
+        with:
+          repository: ludwici/AnchorUI
+          ref: 86a12f90eb0fe4e2caef17385ac70579bbcd0c5d
+          path: AnchorUI
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+      - uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: '8.8'
+      - name: Build and test
+        working-directory: IntegratedLore
+        run: gradle build --no-daemon
+      - uses: actions/upload-artifact@v4
+        with:
+          name: integratedlore-neoforge-1.21.1
+          path: IntegratedLore/build/libs/*.jar
+          if-no-files-found: error

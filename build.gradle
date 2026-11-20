@@ -1,0 +1,44 @@
+plugins {
+    id 'java-library'
+    id 'idea'
+    id 'net.neoforged.moddev' version '2.0.88'
+}
+version = mod_version
+group = 'com.ludwici'
+base {
+    archivesName = 'integratedlore-neoforge-1.21.1'
+}
+java.toolchain.languageVersion = JavaLanguageVersion.of(21)
+repositories {
+    mavenLocal()
+    mavenCentral()
+    maven { url = 'https://libraries.minecraft.net' }
+}
+neoForge {
+    version = neo_version
+    parchment {
+        minecraftVersion = '1.21.1'
+        mappingsVersion = '2024.11.17'
+    }
+    runs {
+        client {
+            client()
+        }
+    }
+    mods {
+        integratedlore {
+            sourceSet(sourceSets.main)
+        }
+    }
+}
+dependencies {
+    implementation 'com.ludwici:anchorui:1.0.0'
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.11.4'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+}
+tasks.named('test', Test) {
+    useJUnitPlatform()
+}
+tasks.named('jar', Jar) {
+    archiveFileName.set('integratedlore-neoforge-1.21.1+0.1.0.jar')
+}
