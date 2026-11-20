@@ -1,11 +1,14 @@
 name: Build
 on:
   push:
-    branches: [main, feature/item-inspection]
+    branches: [main]
     paths-ignore: ['**/*.md']
   pull_request:
     paths-ignore: ['**/*.md']
   workflow_dispatch:
+concurrency:
+  group: integratedlore-${{ github.ref }}
+  cancel-in-progress: true
 permissions:
   contents: read
 jobs:
@@ -35,3 +38,4 @@ jobs:
           name: integratedlore-neoforge-1.21.1
           path: IntegratedLore/build/libs/*.jar
           if-no-files-found: error
+          retention-days: 1
