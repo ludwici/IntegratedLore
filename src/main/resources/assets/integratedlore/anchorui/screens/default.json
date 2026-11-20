@@ -107,9 +107,9 @@
     {
       "type": "anchorui:text",
       "id": "hint",
-      "text": "Drag LMB to rotate  |  Add clues in a resource pack  |  Esc: back",
+      "text": "LMB: Rotate  |  Esc: Back",
       "size": {
-        "width": 340,
+        "width": 280,
         "height": 15
       },
       "position": {
@@ -118,6 +118,25 @@
         "relativeTo": "screen",
         "x": 13,
         "y": -22
+      }
+    },
+    {
+      "type": "anchorui:button",
+      "id": "reset_view",
+      "text": "RESET",
+      "size": {
+        "width": 65,
+        "height": 20
+      },
+      "position": {
+        "point": "BOTTOMRIGHT",
+        "anchor": "BOTTOMRIGHT",
+        "relativeTo": "screen",
+        "x": -13,
+        "y": -9
+      },
+      "onClick": {
+        "type": "integratedlore:reset_view"
       }
     }
   ]

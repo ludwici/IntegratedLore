@@ -1,5 +1,6 @@
 package com.ludwici.integratedlore.client;
 
+import com.ludwici.anchorui.api.action.UiActionRegistry;
 import com.ludwici.anchorui.api.widget.AnchorWidgetRegistry;
 import com.ludwici.integratedlore.IntegratedLore;
 import net.minecraft.resources.ResourceLocation;
@@ -16,6 +17,11 @@ public final class ClientModEvents {
     @SubscribeEvent
     public static void onClientSetup(FMLClientSetupEvent event) {
         event.enqueueWork(() -> {
+            UiActionRegistry.register(ResourceLocation.fromNamespaceAndPath(IntegratedLore.MOD_ID, "reset_view"), (context, settings) -> () -> {
+                if (context.screen() instanceof InspectionScreen screen) {
+                    screen.inspection().resetView();
+                }
+            });
             AnchorWidgetRegistry.register(ResourceLocation.fromNamespaceAndPath(IntegratedLore.MOD_ID, "viewer"), (context, element, style) -> {
                 if (!(context.screen() instanceof InspectionScreen screen)) {
                     throw new IllegalStateException("integratedlore:viewer requires an InspectionScreen");
