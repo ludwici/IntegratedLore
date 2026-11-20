@@ -18,8 +18,9 @@ public final class InspectionState {
     private final ItemStack item;
     private final List<InspectionHotspot> hotspots;
     private final Set<String> discovered = new LinkedHashSet<>();
-    private float yaw = 25.0F;
-    private float pitch = 15.0F;
+    private float yaw = 45.0F;
+    private float pitch = 0.0F;
+    private float zoom = 4.0F;
 
     public InspectionState(ItemStack item, LoreEntity entity) {
         this.item = item.copy();
@@ -70,15 +71,24 @@ public final class InspectionState {
         return pitch;
     }
 
+    public float zoom() {
+        return zoom;
+    }
+
+    public void zoom(float delta) {
+        zoom = Math.max(2.0F, Math.min(10.0F, zoom + delta));
+    }
+
     public void rotate(float yawDelta, float pitchDelta) {
         yaw = ViewAngles.normalize(yaw + yawDelta);
-        pitch = Math.max(-85.0F, Math.min(85.0F, pitch + pitchDelta));
+        pitch = ViewAngles.normalize(pitch + pitchDelta);
         updateDiscovery();
     }
 
     public void resetView() {
-        yaw = 25.0F;
-        pitch = 15.0F;
+        yaw = 45.0F;
+        pitch = 0.0F;
+        zoom = 4.0F;
         updateDiscovery();
     }
 

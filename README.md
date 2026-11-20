@@ -4,7 +4,8 @@ Interactive angle-based item inspection for Minecraft 1.21.1 (NeoForge), with la
 
 ## Prototype features
 
-- Hold the **left mouse button** over the center item and drag to rotate it.
+- Hold the **left mouse button** over the center item and drag to rotate it. Rotation now follows the original AnchorUI item-viewer direction and sensitivity, with the GUI renderer depth offset cancelled to keep the item centered.
+- Scroll over the item to zoom (2x-10x, initially 4x); use RESET to restore the initial angle and zoom.
 - Unlock clues by viewing the item at specific yaw/pitch orientations.
 - Discovered clues are listed in a scrollable journal on the left and stay unlocked until the inspection screen closes.
 - Custom AnchorUI widget types: `integratedlore:viewer` and `integratedlore:journal`.
@@ -50,7 +51,7 @@ The layout can include regular `anchorui:panel`, `anchorui:text`, and other widg
 }
 ```
 
-Yaw and pitch are degrees: initial yaw is 25, initial pitch is 15, yaw wraps through 180, and pitch is clamped to -85..85. Tolerance is an angular threshold on both axes; markerX / markerY are normalized display positions (-1..1). The clue automatically unlocks once the view matches, and remains in the journal until the screen is closed.
+Yaw and pitch are degrees: initial yaw is 45, initial pitch is 0. Both axes wrap through 180 degrees, allowing full rotation. The initial zoom is 4x. Tolerance is an angular threshold on both axes; markerX / markerY are normalized display positions (-1..1). The clue automatically unlocks once the view matches, and remains in the journal until the screen is closed.
 
 ## Future work
 

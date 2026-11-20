@@ -30,11 +30,12 @@ public final class InspectionViewerWidget extends AbstractWidget {
         if (!state.item().isEmpty()) {
             PoseStack pose = graphics.pose();
             pose.pushPose();
-            pose.translate(centerX, centerY, 220.0F);
-            float modelScale = Math.min(18.0F, Math.max(2.5F, size / 30.0F));
-            pose.scale(modelScale, modelScale, modelScale);
-            pose.mulPose(Axis.YP.rotationDegrees(state.yaw()));
+            float modelScale = state.zoom();
+            pose.translate(centerX, centerY, 10.0F);
             pose.mulPose(Axis.XP.rotationDegrees(state.pitch()));
+            pose.mulPose(Axis.YP.rotationDegrees(state.yaw()));
+            pose.translate(0.0F, 0.0F, -150.0F * modelScale);
+            pose.scale(modelScale, modelScale, modelScale);
             graphics.renderItem(state.item(), -8, -8);
             pose.popPose();
         }
@@ -67,7 +68,7 @@ public final class InspectionViewerWidget extends AbstractWidget {
         if (!dragging || button != 0) {
             return false;
         }
-        state.rotate((float) dragX * 0.65F, (float) dragY * 0.65F);
+        state.rotate((float) dragX * 2.5F, (float) -dragY * 2.5F);
         return true;
     }
 
@@ -77,6 +78,15 @@ public final class InspectionViewerWidget extends AbstractWidget {
             return false;
         }
         dragging = false;
+        return true;
+    }
+
+    @Override
+    public boolean mouseScrolled(double mouseX, double mouseY, double scrollX, double scrollY) {
+        if (!isMouseOver(mouseX, mouseY)) {
+            return false;
+        }
+        state.zoom((float) scrollY * 0.5F);
         return true;
     }
 

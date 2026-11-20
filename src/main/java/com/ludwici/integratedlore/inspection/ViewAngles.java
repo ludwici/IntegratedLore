@@ -20,6 +20,6 @@ public final class ViewAngles {
     }
 
     public static boolean matches(float yaw, float pitch, float targetYaw, float targetPitch, float tolerance) {
-        return distance(yaw, targetYaw) <= tolerance && Math.abs(pitch - targetPitch) <= tolerance;
+        return distance(yaw, targetYaw) <= tolerance && distance(pitch, targetPitch) <= tolerance;
     }
 }

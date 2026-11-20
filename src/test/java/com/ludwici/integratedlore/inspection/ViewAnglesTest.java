@@ -18,5 +18,6 @@ class ViewAnglesTest {
         assertTrue(ViewAngles.matches(89.0F, 12.0F, 90.0F, 10.0F, 3.0F));
         assertFalse(ViewAngles.matches(89.0F, 20.0F, 90.0F, 10.0F, 3.0F));
         assertFalse(ViewAngles.matches(80.0F, 12.0F, 90.0F, 10.0F, 3.0F));
+        assertTrue(ViewAngles.matches(45.0F, 179.0F, 45.0F, -179.0F, 3.0F));
     }
 }

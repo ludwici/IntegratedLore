@@ -15,7 +15,7 @@ public record InspectionHotspot(String id, String title, String description, flo
         float pitch = number(json, "pitch", 0.0F);
         float tolerance = number(json, "tolerance", 14.0F);
         if (!Float.isFinite(yaw) || !Float.isFinite(pitch) || !Float.isFinite(tolerance)
-                || tolerance <= 0.0F || tolerance > 90.0F || Math.abs(pitch) > 85.0F) {
+                || tolerance <= 0.0F || tolerance > 90.0F || Math.abs(pitch) > 180.0F) {
             throw new IllegalArgumentException("Invalid viewing angles or tolerance for clue '" + id + "'");
         }
         float markerX = number(json, "markerX", 0.0F);
