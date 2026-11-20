@@ -1,0 +1,124 @@
+{
+  "title": "Item Inspection",
+  "entities": [
+    {
+      "type": "anchorui:panel",
+      "id": "journal_panel",
+      "position": {
+        "anchors": [
+          {
+            "point": "TOPLEFT",
+            "anchor": "TOPLEFT",
+            "relativeTo": "screen",
+            "x": 12,
+            "y": 34
+          },
+          {
+            "point": "BOTTOMRIGHT",
+            "anchor": "BOTTOMLEFT",
+            "relativeTo": "screen",
+            "x": 172,
+            "y": -35
+          }
+        ]
+      },
+      "fillColor": "#E8141E2B",
+      "borderColor": "#FF576D78",
+      "borderWidth": 1,
+      "radius": 4
+    },
+    {
+      "type": "anchorui:text",
+      "id": "header",
+      "text": "<b>ITEM INSPECTION</b>",
+      "size": {
+        "width": 200,
+        "height": 18
+      },
+      "position": {
+        "point": "TOPLEFT",
+        "anchor": "TOPLEFT",
+        "relativeTo": "screen",
+        "x": 15,
+        "y": 9
+      }
+    },
+    {
+      "type": "anchorui:text",
+      "id": "journal_title",
+      "text": "<b>DISCOVERIES</b>",
+      "size": {
+        "width": 140,
+        "height": 14
+      },
+      "position": {
+        "point": "TOPLEFT",
+        "anchor": "TOPLEFT",
+        "relativeTo": "journal_panel",
+        "x": 9,
+        "y": 9
+      }
+    },
+    {
+      "type": "integratedlore:journal",
+      "id": "journal",
+      "position": {
+        "anchors": [
+          {
+            "point": "TOPLEFT",
+            "anchor": "TOPLEFT",
+            "relativeTo": "journal_panel",
+            "x": 7,
+            "y": 29
+          },
+          {
+            "point": "BOTTOMRIGHT",
+            "anchor": "BOTTOMRIGHT",
+            "relativeTo": "journal_panel",
+            "x": -7,
+            "y": -7
+          }
+        ]
+      }
+    },
+    {
+      "type": "integratedlore:viewer",
+      "id": "viewer",
+      "position": {
+        "anchors": [
+          {
+            "point": "TOPLEFT",
+            "anchor": "TOPLEFT",
+            "relativeTo": "screen",
+            "x": 184,
+            "y": 32
+          },
+          {
+            "point": "BOTTOMRIGHT",
+            "anchor": "BOTTOMRIGHT",
+            "relativeTo": "screen",
+            "x": -12,
+            "y": -35
+          }
+        ]
+      },
+      "clues": []
+    },
+    {
+      "type": "anchorui:text",
+      "id": "hint",
+      "text": "Drag LMB to rotate  |  Add clues in a resource pack  |  Esc: back",
+      "size": {
+        "width": 340,
+        "height": 15
+      },
+      "position": {
+        "point": "BOTTOMLEFT",
+        "anchor": "BOTTOMLEFT",
+        "relativeTo": "screen",
+        "x": 13,
+        "y": -22
+      }
+    }
+  ]
+}

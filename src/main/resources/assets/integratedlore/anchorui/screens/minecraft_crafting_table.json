@@ -1,0 +1,155 @@
+{
+  "title": "Crafting Table Inspection",
+  "entities": [
+    {
+      "type": "anchorui:panel",
+      "id": "journal_panel",
+      "position": {
+        "anchors": [
+          {
+            "point": "TOPLEFT",
+            "anchor": "TOPLEFT",
+            "relativeTo": "screen",
+            "x": 12,
+            "y": 34
+          },
+          {
+            "point": "BOTTOMRIGHT",
+            "anchor": "BOTTOMLEFT",
+            "relativeTo": "screen",
+            "x": 172,
+            "y": -35
+          }
+        ]
+      },
+      "fillColor": "#E8141E2B",
+      "borderColor": "#FF576D78",
+      "borderWidth": 1,
+      "radius": 4
+    },
+    {
+      "type": "anchorui:text",
+      "id": "header",
+      "text": "<b>CRAFTING TABLE</b>",
+      "size": {
+        "width": 200,
+        "height": 18
+      },
+      "position": {
+        "point": "TOPLEFT",
+        "anchor": "TOPLEFT",
+        "relativeTo": "screen",
+        "x": 15,
+        "y": 9
+      }
+    },
+    {
+      "type": "anchorui:text",
+      "id": "journal_title",
+      "text": "<b>DISCOVERIES</b>",
+      "size": {
+        "width": 140,
+        "height": 14
+      },
+      "position": {
+        "point": "TOPLEFT",
+        "anchor": "TOPLEFT",
+        "relativeTo": "journal_panel",
+        "x": 9,
+        "y": 9
+      }
+    },
+    {
+      "type": "integratedlore:journal",
+      "id": "journal",
+      "position": {
+        "anchors": [
+          {
+            "point": "TOPLEFT",
+            "anchor": "TOPLEFT",
+            "relativeTo": "journal_panel",
+            "x": 7,
+            "y": 29
+          },
+          {
+            "point": "BOTTOMRIGHT",
+            "anchor": "BOTTOMRIGHT",
+            "relativeTo": "journal_panel",
+            "x": -7,
+            "y": -7
+          }
+        ]
+      }
+    },
+    {
+      "type": "integratedlore:viewer",
+      "id": "viewer",
+      "position": {
+        "anchors": [
+          {
+            "point": "TOPLEFT",
+            "anchor": "TOPLEFT",
+            "relativeTo": "screen",
+            "x": 184,
+            "y": 32
+          },
+          {
+            "point": "BOTTOMRIGHT",
+            "anchor": "BOTTOMRIGHT",
+            "relativeTo": "screen",
+            "x": -12,
+            "y": -35
+          }
+        ]
+      },
+      "clues": [
+        {
+          "id": "top",
+          "title": "Work surface",
+          "description": "The nine-part grid on top is arranged for combining materials.",
+          "yaw": 0,
+          "pitch": -30,
+          "tolerance": 16,
+          "markerX": 0,
+          "markerY": -0.32
+        },
+        {
+          "id": "side",
+          "title": "Tool brackets",
+          "description": "Metal fittings on the side keep useful tools within reach.",
+          "yaw": 90,
+          "pitch": 12,
+          "tolerance": 16,
+          "markerX": 0.28,
+          "markerY": 0.05
+        },
+        {
+          "id": "back",
+          "title": "Wooden frame",
+          "description": "The sturdy bench is assembled from heavy planks and reinforced corners.",
+          "yaw": -155,
+          "pitch": 5,
+          "tolerance": 18,
+          "markerX": -0.25,
+          "markerY": 0.16
+        }
+      ]
+    },
+    {
+      "type": "anchorui:text",
+      "id": "hint",
+      "text": "Drag LMB to rotate  |  Find the right viewing angle  |  Esc: back",
+      "size": {
+        "width": 340,
+        "height": 15
+      },
+      "position": {
+        "point": "BOTTOMLEFT",
+        "anchor": "BOTTOMLEFT",
+        "relativeTo": "screen",
+        "x": 13,
+        "y": -22
+      }
+    }
+  ]
+}
