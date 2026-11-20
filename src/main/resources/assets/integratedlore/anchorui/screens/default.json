@@ -105,22 +105,6 @@
       "clues": []
     },
     {
-      "type": "anchorui:text",
-      "id": "hint",
-      "text": "LMB: Rotate  |  Esc: Back",
-      "size": {
-        "width": 280,
-        "height": 15
-      },
-      "position": {
-        "point": "BOTTOMLEFT",
-        "anchor": "BOTTOMLEFT",
-        "relativeTo": "screen",
-        "x": 13,
-        "y": -22
-      }
-    },
-    {
       "type": "anchorui:button",
       "id": "reset_view",
       "text": "RESET",

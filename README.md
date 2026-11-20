@@ -7,7 +7,8 @@ Interactive angle-based item inspection for Minecraft 1.21.1 (NeoForge), with la
 - Hold the **left mouse button** over the center item and drag to rotate it. Rotation now follows the original AnchorUI item-viewer direction and sensitivity, with the GUI renderer depth offset cancelled to keep the item centered.
 - Scroll over the item to zoom (2x-10x, initially 4x); use RESET to restore the initial angle and zoom.
 - Unlock clues by viewing the item at specific yaw/pitch orientations.
-- Discovered clues are listed in a scrollable journal on the left and stay unlocked until the inspection screen closes.
+- Discovered clues are listed in a scrollable journal on the left and stay unlocked until the inspection screen closes. Each new clue reveals its description with a short eased expansion and fade.
+- Clue markers are displayed as a foreground overlay above the item render, positioned relative to the zoom-scaled item footprint (not the entire viewport).
 - Custom AnchorUI widget types: `integratedlore:viewer` and `integratedlore:journal`.
 - Panels, labels, responsive anchors, widget placement and clue definitions live in AnchorUI JSON documents; resource packs can override these.
 - The first implementation uses Minecraft GUI item models and orientation thresholds, not mesh raycasts. Flat item icons do not gain true depth.
@@ -51,7 +52,7 @@ The layout can include regular `anchorui:panel`, `anchorui:text`, and other widg
 }
 ```
 
-Yaw and pitch are degrees: initial yaw is 45, initial pitch is 0. Both axes wrap through 180 degrees, allowing full rotation. The initial zoom is 4x. Tolerance is an angular threshold on both axes; markerX / markerY are normalized display positions (-1..1). The clue automatically unlocks once the view matches, and remains in the journal until the screen is closed.
+Yaw and pitch are degrees: initial yaw is 45, initial pitch is 0. Both axes wrap through 180 degrees, allowing full rotation. The initial zoom is 4x. Tolerance is an angular threshold on both axes; markerX / markerY are normalized display positions (-1..1). The clue automatically unlocks once the view matches, and remains in the journal until the screen is closed. The on-item marker only appears while the corresponding viewing angle matches, so it disappears when the item is turned away.
 
 ## Future work
 

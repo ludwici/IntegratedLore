@@ -8,8 +8,10 @@ import net.minecraft.world.item.ItemStack;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 public final class InspectionState {
@@ -17,7 +19,9 @@ public final class InspectionState {
 
     private final ItemStack item;
     private final List<InspectionHotspot> hotspots;
+    private static final long REVEAL_DURATION_NANOS = 280_000_000L;
     private final Set<String> discovered = new LinkedHashSet<>();
+    private final Map<String, Long> discoveryTimes = new HashMap<>();
     private float yaw = 45.0F;
     private float pitch = 0.0F;
     private float zoom = 4.0F;
@@ -63,6 +67,15 @@ public final class InspectionState {
         return discovered.size();
     }
 
+    public float revealProgress(InspectionHotspot hotspot) {
+        Long discoveryTime = discoveryTimes.get(hotspot.id());
+        if (discoveryTime == null) {
+            return isDiscovered(hotspot) ? 1.0F : 0.0F;
+        }
+        float progress = Math.max(0.0F, Math.min(1.0F, (System.nanoTime() - discoveryTime) / (float) REVEAL_DURATION_NANOS));
+        return progress * progress * (3.0F - 2.0F * progress);
+    }
+
     public float yaw() {
         return yaw;
     }
@@ -94,8 +107,8 @@ public final class InspectionState {
 
     private void updateDiscovery() {
         for (InspectionHotspot hotspot : hotspots) {
-            if (hotspot.visibleAt(yaw, pitch)) {
-                discovered.add(hotspot.id());
+            if (hotspot.visibleAt(yaw, pitch) && discovered.add(hotspot.id())) {
+                discoveryTimes.put(hotspot.id(), System.nanoTime());
             }
         }
     }

@@ -40,18 +40,30 @@ public final class InspectionViewerWidget extends AbstractWidget {
             pose.popPose();
         }
 
+        renderHotspots(graphics, centerX, centerY);
+    }
+
+    private void renderHotspots(GuiGraphics graphics, int centerX, int centerY) {
+        float itemHalfSize = 8.0F * state.zoom();
+        PoseStack pose = graphics.pose();
+        pose.pushPose();
+        pose.translate(0.0F, 0.0F, 600.0F);
+
         for (InspectionHotspot hotspot : state.hotspots()) {
             if (!hotspot.visibleAt(state.yaw(), state.pitch())) {
                 continue;
             }
-            int markerX = centerX + Math.round(hotspot.markerX() * radius);
-            int markerY = centerY + Math.round(hotspot.markerY() * radius);
+
+            int markerX = centerX + Math.round(hotspot.markerX() * itemHalfSize);
+            int markerY = centerY + Math.round(hotspot.markerY() * itemHalfSize);
             int color = state.isDiscovered(hotspot) ? 0xFF88DBC9 : 0xFFFFD181;
-            graphics.fill(markerX - 5, markerY - 1, markerX + 6, markerY + 2, 0xDD0B1923);
-            graphics.fill(markerX - 1, markerY - 5, markerX + 2, markerY + 6, 0xDD0B1923);
+            graphics.fill(markerX - 5, markerY - 1, markerX + 6, markerY + 2, 0xE50A121C);
+            graphics.fill(markerX - 1, markerY - 5, markerX + 2, markerY + 6, 0xE50A121C);
             graphics.fill(markerX - 3, markerY, markerX + 4, markerY + 1, color);
             graphics.fill(markerX, markerY - 3, markerX + 1, markerY + 4, color);
         }
+
+        pose.popPose();
     }
 
     @Override

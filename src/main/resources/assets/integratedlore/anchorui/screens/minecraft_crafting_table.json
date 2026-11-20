@@ -110,8 +110,8 @@
           "yaw": 0,
           "pitch": -30,
           "tolerance": 16,
-          "markerX": 0,
-          "markerY": -0.32
+          "markerX": 0.02,
+          "markerY": -0.24
         },
         {
           "id": "side",
@@ -120,8 +120,8 @@
           "yaw": 90,
           "pitch": 12,
           "tolerance": 16,
-          "markerX": 0.28,
-          "markerY": 0.05
+          "markerX": 0.25,
+          "markerY": 0.1
         },
         {
           "id": "back",
@@ -130,26 +130,10 @@
           "yaw": -155,
           "pitch": 5,
           "tolerance": 18,
-          "markerX": -0.25,
-          "markerY": 0.16
+          "markerX": -0.2,
+          "markerY": 0.12
         }
       ]
-    },
-    {
-      "type": "anchorui:text",
-      "id": "hint",
-      "text": "LMB: Rotate  |  Find the right angle  |  Esc: Back",
-      "size": {
-        "width": 280,
-        "height": 15
-      },
-      "position": {
-        "point": "BOTTOMLEFT",
-        "anchor": "BOTTOMLEFT",
-        "relativeTo": "screen",
-        "x": 13,
-        "y": -22
-      }
     },
     {
       "type": "anchorui:button",

@@ -27,21 +27,39 @@ public final class InspectionJournalWidget extends AbstractWidget {
         int x = getX() + 5;
         int y = getY() + 4 - scroll;
         int wrapWidth = Math.max(32, getWidth() - 13);
+        scroll = Math.min(scroll, Math.max(0, contentHeight() - getHeight()));
+        y = getY() + 4 - scroll;
         graphics.enableScissor(getX(), getY(), getRight(), getBottom());
+
         for (InspectionHotspot hotspot : state.hotspots()) {
             boolean found = state.isDiscovered(hotspot);
-            String label = found ? "✓ " + hotspot.title() : "◇ ???";
+            String label = found ? "• " + hotspot.title() : "· ???";
             graphics.drawString(font, label, x, y, found ? 0xFFF4DFB2 : 0xFF778392, false);
             y += 14;
+
             if (found && !hotspot.description().isBlank()) {
                 List<FormattedCharSequence> lines = font.split(Component.literal(hotspot.description()), wrapWidth);
-                for (FormattedCharSequence line : lines) {
-                    graphics.drawString(font, line, x + 5, y, 0xFFD2D9DD, false);
-                    y += 11;
+                float progress = state.revealProgress(hotspot);
+                int visibleHeight = Math.round(lines.size() * 11 * progress);
+                int top = Math.max(y, getY());
+                int bottom = Math.min(y + visibleHeight, getBottom());
+
+                if (top < bottom) {
+                    graphics.enableScissor(getX(), top, getRight(), bottom);
+                    int alpha = Math.max(24, Math.min(255, Math.round(progress * 255.0F)));
+                    int color = (alpha << 24) | 0x00D2D9DD;
+                    int lineY = y;
+                    for (FormattedCharSequence line : lines) {
+                        graphics.drawString(font, line, x + 5, lineY, color, false);
+                        lineY += 11;
+                    }
+                    graphics.disableScissor();
                 }
+                y += visibleHeight;
             }
             y += 9;
         }
+
         if (state.hotspots().isEmpty()) {
             graphics.drawString(font, "No clues in this layout", x, y, 0xFF84929E, false);
         }
@@ -64,7 +82,7 @@ public final class InspectionJournalWidget extends AbstractWidget {
         for (InspectionHotspot hotspot : state.hotspots()) {
             height += 23;
             if (state.isDiscovered(hotspot) && !hotspot.description().isBlank()) {
-                height += font.split(Component.literal(hotspot.description()), wrapWidth).size() * 11;
+                height += Math.round(font.split(Component.literal(hotspot.description()), wrapWidth).size() * 11 * state.revealProgress(hotspot));
             }
         }
         return height;
